@@ -1,12 +1,19 @@
 class Dog 
   attr_accessor :id, :name, :breed 
+<<<<<<< HEAD
   @@all = []
+=======
+>>>>>>> 78ccbe954281f47d6760b4d43d56d59b6fb67d03
   
   def initialize(id: nil , name:, breed:)
     @id = id
     @name = name
+<<<<<<< HEAD
     @breed = breed
     @@all << self
+=======
+    @breed = breed 
+>>>>>>> 78ccbe954281f47d6760b4d43d56d59b6fb67d03
   end 
   
   def self.create_table 
@@ -33,13 +40,22 @@ class Dog
     if self.id        #if the object has an id, then it's been added to the database
       self.update
     else 
+<<<<<<< HEAD
       sql = <<-SQL
+=======
+      puppy = <<-SQL
+>>>>>>> 78ccbe954281f47d6760b4d43d56d59b6fb67d03
         INSERT INTO dogs (name, breed)
         VALUES (?, ?) 
       SQL
       
+<<<<<<< HEAD
       DB[:conn].execute(sql, self.name, self.breed)
       self.id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs").flatten.first
+=======
+      DB[:conn].execute(puppy, self.name, self.breed)
+      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs").flatten.first
+>>>>>>> 78ccbe954281f47d6760b4d43d56d59b6fb67d03
     end 
     self
   end 
@@ -66,6 +82,7 @@ class Dog
     self.new(id: row[0], name: row[1], breed: row[2])
   end
   
+<<<<<<< HEAD
   def self.find_or_create_by(name:, breed:)
     dog = @@all.detect {|dog| dog.name == name && dog.breed == breed}
    
@@ -85,4 +102,12 @@ class Dog
     sql = "UPDATE dogs SET name = ? WHERE id = ?"
     DB[:conn].execute(sql, self.name, self.id)
   end
+=======
+  
+  
+  # def update(name)
+  #   sql = "UPDATE dogs SET name = ? WHERE id = ?"
+  #   DB[:conn].execute(sql, self.name, self.id)
+  # end
+>>>>>>> 78ccbe954281f47d6760b4d43d56d59b6fb67d03
 end 
